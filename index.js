@@ -1,8 +1,5 @@
 import { file } from './lib/file.js';
 
-const readStatus = await file.read('users', 'petras.json');
-//console.log(readStatus);
-
 const userMaryte = {
     name: 'Maryte',
     age: 87,
@@ -10,13 +7,19 @@ const userMaryte = {
 }
 
 const createStatus = await file.create('users', 'maryte.json', userMaryte); //metodas sukurti faila, nueina i users folderi, tame folderyje turi sukurti atitinkamo pavadinimo faila pvz petras.json, ir kaip turini irasyti users objekta.
-console.log('File status:', createStatus);
+console.log('Sukuria:', createStatus);
 
-const userAntanas = {
-    name: 'Antanas',
-    age: 100,
-    isMarried: true,
-}
+const readStatus = await file.read('users', 'maryte.json');
+console.log('Skaito:', readStatus);
 
-const createStatus2 = await file.create('users', 'antanas.json', userAntanas); //metodas sukurti faila, nueina i users folderi, tame folderyje turi sukurti atitinkamo pavadinimo faila pvz petras.json, ir kaip turini irasyti users objekta.
-console.log('File status:', createStatus2);
+userMaryte.isMarried = true;
+const updateStatus = await file.update('users', 'maryte.json', userMaryte);
+console.log('Atnaujina:', updateStatus);
+
+const deleteStatus = await file.delete('users', 'maryte.json');
+console.log('Istrina:', deleteStatus);
+
+const readStatus2 = await file.read('users', 'maryte.json');
+console.log('Skaito:', readStatus);
+
+
